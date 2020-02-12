@@ -23,14 +23,18 @@
 <script>
 import Router from '@/router.js'
 import { apiService } from './services/api.js'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  data() {
-    return {
-      user: null,
-    }
+  computed:{
+    ...mapState([
+      'user'
+    ])
   },
   methods:{
+    ...mapActions([
+      'getAuth'
+    ]),
     register() {
       Router.push({ path: '/register'})
     },
@@ -39,17 +43,12 @@ export default {
     },
     logout() {
       apiService.logout().then((res) => {
-        this.user = null;
         Router.push({ path: '/login' })
       })
-    },
-    getAuth() {
-      apiService.getAuth().then((res) => {
-        this.user = res
-      })
-    }
+    }    
   },
   mounted() {
+    console.log('getAuthしたい')
     this.getAuth()
   }
 }
