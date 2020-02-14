@@ -13,7 +13,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getAuth({ commit}){
+    getAuth({ commit }){
       return apiService.getAuth().then((res) => {
         commit('setState', res)
       })
