@@ -1,22 +1,34 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import { apiService } from "./services/api.js";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     user: null
   },
   mutations: {
-    setState(state, payload){
-      state.user = payload
+    setState(state, payload) {
+      state.user = payload;
     }
   },
   actions: {
-    getAuth({ commit }){
-      return apiService.getAuth().then((res) => {
-        commit('setState', res)
-      })
+    login({ dispatch }, payload) {
+      return apiService
+        .login({
+          email: payload.email,
+          password: payload.password
+        })
+        .then(res => {
+          dispatch("getAuth");
+        });
+    },
+    getAuth({ commit }) {
+      apiService.getAuth().then(res => {
+        commit("setState", res);
+      });
+      return;
     }
   }
-})
+});
