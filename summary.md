@@ -1,3 +1,9 @@
+## 3/2
+vueのホットデプロイをしたい・破
+ - /frontendで`npm run serve`を叩いてシンプルにvueサーバーを立てる。`docker up`で`npm run serve`したい
+ - /frontendで`docker build -t vue-dev .`イメージはできたっぽい
+ - docker-conposeに足すだけではだめっぽい？
+
 ## 2/24
 vueのホットデプロイをしたい→nodeを立てれば行けそう？次回やる  
 ログを仕込んでみる。しかし失敗→`log.printf`しなかったのが行けない気がしてきた
