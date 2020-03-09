@@ -579,12 +579,16 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 
 			// 所要時間
 			var departure, arrival string
+			timeTable := make([]string, 2)
+			//departure, arrival := "2006/01/02"
 
-			err = dbx.Get(&departure, "SELECT departure FROM train_timetable_master WHERE date=? AND train_class=? AND train_name=? AND station=?", date.Format("2006/01/02"), train.TrainClass, train.TrainName, fromStation.Name)
+			err = dbx.Get(&timeTable, "SELECT departure, arrival FROM train_timetable_master WHERE date=? AND train_class=? AND train_name=? AND station=?", date.Format("2006/01/02"), train.TrainClass, train.TrainName, fromStation.Name)
 			if err != nil {
 				errorResponse(w, http.StatusInternalServerError, err.Error())
 				return
 			}
+			departure = timeTable[0]
+			arrival = timeTable[1]
 
 			departureDate, err := time.Parse("2006/01/02 15:04:05 -07:00 MST", fmt.Sprintf("%s %s +09:00 JST", date.Format("2006/01/02"), departure))
 			if err != nil {
@@ -597,11 +601,11 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 				continue
 			}
 
-			err = dbx.Get(&arrival, "SELECT arrival FROM train_timetable_master WHERE date=? AND train_class=? AND train_name=? AND station=?", date.Format("2006/01/02"), train.TrainClass, train.TrainName, toStation.Name)
-			if err != nil {
-				errorResponse(w, http.StatusInternalServerError, err.Error())
-				return
-			}
+			// err = dbx.Get(&arrival, "SELECT arrival FROM train_timetable_master WHERE date=? AND train_class=? AND train_name=? AND station=?", date.Format("2006/01/02"), train.TrainClass, train.TrainName, toStation.Name)
+			// if err != nil {
+			// 	errorResponse(w, http.StatusInternalServerError, err.Error())
+			// 	return
+			// }
 
 			premium_avail_seats, err := train.getAvailableSeats(fromStation, toStation, "premium", false)
 			if err != nil {
@@ -710,6 +714,15 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 
 }
+
+// func trainSearchHandlerHoge (w http.ResponseWriter, r *http.Request) {
+// 	resp, err := json.Marshal([]TrainSearchResponse{})
+// 	if err != nil {
+// 		errorResponse(w, http.StatusBadRequest, err.Error())
+// 		return
+// 	}
+// 	w.Write(resp)
+// }
 
 func trainSeatsHandler(w http.ResponseWriter, r *http.Request) {
 	/*
@@ -1697,6 +1710,7 @@ func reservationPaymentHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAuthHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Auth")
 
 	// userID取得
 	user, errCode, errMsg := getUser(r)

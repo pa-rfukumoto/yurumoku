@@ -54,7 +54,7 @@ export default {
     },
     logout() {
       const _self = this;
-      apiService.logout().then(res => {
+      apiService.logout().then(() => {
         _self.setState(null);
         Router.push({ path: "/login" });
       });

@@ -1,3 +1,17 @@
+## 3/9
+`/search`を改善する・reboot  
+`departure`と`arrival`を一緒に取るようにしたい  
+そのままではとれないので、`train_timetable_master`の`struct`を定義する？  
+`sqlx`がどうやって返してくるか知りたい  
+
+dockerのmysqlにアクセスできた  
+```  
+# docker exec -i -t webapp_mysql_1 bash
+# mysql -u isutrain -p
+# use isutrain  
+```
+アカウント情報は`/webapp/.env`
+
 ## 3/2
 vueのホットデプロイをしたい・破
  - /frontendで`npm run serve`を叩いてシンプルにvueサーバーを立てる。`docker up`で`npm run serve`したい
