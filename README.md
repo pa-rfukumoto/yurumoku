@@ -45,9 +45,8 @@ cd isucon9-final
 実装言語を指定してBuildとUpをする。
 
 ```bash
-export LANGUAGE=go
-docker-compose -f webapp/docker-compose.yml -f webapp/docker-compose.${LANGUAGE}.yml build
-docker-compose -f webapp/docker-compose.yml -f webapp/docker-compose.${LANGUAGE}.yml up
+docker-compose -f webapp/docker-compose.yml build
+docker-compose -f webapp/docker-compose.yml up
 ```
 
 http://127.0.0.1:8080

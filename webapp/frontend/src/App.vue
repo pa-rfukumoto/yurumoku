@@ -21,7 +21,7 @@
           <li class="b2" v-if="!user">
             <a href="#" v-on:click="login()">ログイン</a>
           </li>
-          <li class="b2" v-if="user">
+          <li class="b3" v-if="user">
             <a href="#" v-on:click="logout()">ログアウト</a>
           </li>
           <li class="b3" v-if="!user">
@@ -226,77 +226,6 @@ header div.title ul li.b3 a {
 header div.title ul li.b2 a:hover,
 header div.title ul li.b3 a:hover {
   background: #b7c5d2;
-}
-
-# Home .home article {
-  display: block;
-  opacity: 1;
-}
-
-.home article:hover {
-  opacity: 0.8;
-}
-.home article p {
-  margin: 0;
-  padding: 0;
-  display: block;
-  padding: 77px 0 0 135px;
-  width: 505px;
-  height: 133px;
-  font-size: 42px;
-  color: #ffffff;
-  line-height: 1.1;
-  font-style: normal;
-  text-decoration: none;
-  letter-spacing: 2px;
-}
-
-.home article a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.home article.reserve {
-  width: 960px;
-  height: 210px;
-  background: #1c1f84;
-}
-
-.home article.inquiry {
-  width: 960px;
-  height: 210px;
-  background: #00a6ed;
-}
-
-.information {
-  margin: 0;
-  padding: 13px 19px;
-  background: #ffeab4;
-  width: 922px;
-}
-
-.information article h2 {
-  margin: 0 0 8px 0;
-  padding: 0 0 8px 0;
-  font-size: 18px;
-  color: #000000;
-  line-height: 1.1;
-  font-weight: normal;
-  border-bottom: 2px dotted #666666;
-}
-
-.information article h2 span {
-  position: absolute;
-  left: -5000px;
-  top: -5000px;
-}
-
-.information article p {
-  margin: 0;
-  padding: 0;
-  font-size: 13px;
-  color: #666666;
-  line-height: 1.4;
 }
 
 div.trains {

@@ -1,3 +1,15 @@
+## 3/16
+- デフォルトで`go`で起動するように変更
+  - docker-compose -f webapp/docker-compose.yml build または
+  - docker-compose -f webapp/docker-compose.yml up だけでOK
+- ホーム画面のUI改善
+  - 「予約」「予約の確認」ボタン全体を押せるように
+  - 「ログアウト」ボタンを右に寄せる
+- やろうとしたけど中止
+  - 予約画面の「最速」「中間」「遅いやつ」の文言を、「超超急行」「超急行」「急行」に変えようとした
+    - inputのvalueや裏側のプログラムにおいても、すべてで「最速」「中間」「遅いやつ」という値が評価に使用されている
+    - 表示を変えるならvalueも一括で変えたいが、時間もなく、慎重を要するので一旦中止
+
 ## 3/9
 `/search`を改善する・reboot  
 `departure`と`arrival`を一緒に取るようにしたい  
