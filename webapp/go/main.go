@@ -234,6 +234,11 @@ type AuthResponse struct {
 	Email string `json:"email"`
 }
 
+type TrainTimetableMaster struct {
+	departure string `json:"departure" db:"departure"`
+	arrival   string `json:"arrival" db:"arrival"`
+}
+
 const (
 	sessionName   = "session_isutrain"
 	availableDays = 10
@@ -578,8 +583,8 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 			// 列車情報
 
 			// 所要時間
-			var departure, arrival string
-			timeTable := make([]string, 2)
+			var timeTable TrainTimetableMaster
+			//timeTable := make([]string, 2)
 			//departure, arrival := "2006/01/02"
 
 			err = dbx.Get(&timeTable, "SELECT departure, arrival FROM train_timetable_master WHERE date=? AND train_class=? AND train_name=? AND station=?", date.Format("2006/01/02"), train.TrainClass, train.TrainName, fromStation.Name)
@@ -587,8 +592,8 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 				errorResponse(w, http.StatusInternalServerError, err.Error())
 				return
 			}
-			departure = timeTable[0]
-			arrival = timeTable[1]
+			departure := timeTable.departure
+			arrival := timeTable.arrival
 
 			departureDate, err := time.Parse("2006/01/02 15:04:05 -07:00 MST", fmt.Sprintf("%s %s +09:00 JST", date.Format("2006/01/02"), departure))
 			if err != nil {
@@ -714,15 +719,6 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp)
 
 }
-
-// func trainSearchHandlerHoge (w http.ResponseWriter, r *http.Request) {
-// 	resp, err := json.Marshal([]TrainSearchResponse{})
-// 	if err != nil {
-// 		errorResponse(w, http.StatusBadRequest, err.Error())
-// 		return
-// 	}
-// 	w.Write(resp)
-// }
 
 func trainSeatsHandler(w http.ResponseWriter, r *http.Request) {
 	/*
