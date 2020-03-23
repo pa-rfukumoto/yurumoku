@@ -1,3 +1,13 @@
+## 3/23
+scannable dest type struct with >1 columns (2) in result直したい(main.go 586行目あたり)　→　だめでした
+- 変数宣言見直し
+- type見直し
+- 念のためSQL叩いてみる
+
+参考
+- https://github.com/jmoiron/sqlx
+- https://qiita.com/k-motoyan/items/f37d1348efd3f40e9096
+
 ## 3/16
 - デフォルトで`go`で起動するように変更
   - docker-compose -f webapp/docker-compose.yml build または
