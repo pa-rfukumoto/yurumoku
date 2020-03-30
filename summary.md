@@ -1,3 +1,8 @@
+## 3/30
+scannable dest type struct with >1 columns (2) in result直したい(main.go 586行目あたり)・破
+ - structの変数定義をupper camel case にする　→　これでいけた
+ - https://stackoverflow.com/questions/39702192/sqlx-non-struct-dest-type-struct-with-1-columns-2/39703481
+
 ## 3/23
 scannable dest type struct with >1 columns (2) in result直したい(main.go 586行目あたり)　→　だめでした
 - 変数宣言見直し

@@ -235,8 +235,8 @@ type AuthResponse struct {
 }
 
 type TrainTimetableMaster struct {
-	departure string `json:"departure" db:"departure"`
-	arrival   string `json:"arrival" db:"arrival"`
+	Departure string `db:"departure"`
+	Arrival   string `db:"arrival"`
 }
 
 const (
@@ -592,8 +592,8 @@ func trainSearchHandler(w http.ResponseWriter, r *http.Request) {
 				errorResponse(w, http.StatusInternalServerError, err.Error())
 				return
 			}
-			departure := timeTable.departure
-			arrival := timeTable.arrival
+			departure := timeTable.Departure
+			arrival := timeTable.Arrival
 
 			departureDate, err := time.Parse("2006/01/02 15:04:05 -07:00 MST", fmt.Sprintf("%s %s +09:00 JST", date.Format("2006/01/02"), departure))
 			if err != nil {
